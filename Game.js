@@ -69,9 +69,10 @@ class Game {
 
   /** placeInTable: update DOM to place piece into HTML table of board */
   placeInTable = (y, x) => {
+    const color = this.currPlayer === this.playerOne ? 'red' : 'blue';
     const piece = document.createElement('div');
-    piece.classList.add('piece');
-    piece.classList.add(`p${this.currPlayer}`);
+    piece.classList.add('piece')
+    piece.classList.add(`${color}`)
     piece.style.top = -50 * (y + 2);
 
     const spot = document.getElementById(`${y}-${x}`);
@@ -102,7 +103,7 @@ class Game {
 
     // check for win
     if (this.checkForWin()) {
-      return this.endGame(`Player ${this.currPlayer} won!`);
+      return this.endGame(`${this.currPlayer} wins!`);
     }
 
     // check for tie
@@ -113,7 +114,7 @@ class Game {
     // switch players
     // this.currPlayer = this.currPlayer === 1 ? 2 : 1;
     this.currPlayer = this.currPlayer === this.playerOne ? this.playerTwo : this.playerOne;
-    console.log(this.currPlayer)
+    console.log(this)
   }
 
   /** checkForWin: check board cell-by-cell for "does a win start here?" */
